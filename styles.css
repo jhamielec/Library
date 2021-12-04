@@ -21,3 +21,14 @@ input {
 button {
     background-color:goldenrod;
 }
+
+.shelf {
+    border: 1px lightgray solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+  }

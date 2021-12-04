@@ -31,7 +31,15 @@ removeBookSubmit.addEventListener('click',() => {
     console.log(index)
     myLibrary.splice(index,1)
     document.getElementById("form-rem-book").style.display="none"
+    document.getElementById("rm-index").value=''
+    removeLibraryDisplay(index)
 })
+
+function removeLibraryDisplay(index) {
+    var row=document.getElementById("row"+index)
+    row.remove()
+}
+
 
 addNewBook=document.getElementById("new-book-submit");
 addNewBook.addEventListener('click',() => {
@@ -40,13 +48,35 @@ addNewBook.addEventListener('click',() => {
     pages=document.getElementById("pages");
     read=document.getElementById("read");
     let book=new makeBook(title.value,author.value,pages.value,read.value)
-    addBookToLibrary(book)
+    clearForm()
+    let newRow=addBookToLibrary(book)-1
     document.getElementById("form-new-book").style.display="none";
-    
+    addLibraryDisplay(newRow)
 })
 
+function addLibraryDisplay(index) {
+    let table=document.getElementById('main-table')
+    row=table.insertRow()
+    row.id="row"+index
+    newArry=Array.from(myLibrary[index])
+    row.insertCell().textContent=index
+    row.insertCell().textContent=myLibrary[index].title
+    row.insertCell().textContent=myLibrary[index].author
+    row.insertCell().textContent=myLibrary[index].pages
+    row.insertCell().textContent=myLibrary[index].read
+}
+
+
+
+function clearForm() {
+    title.value=''
+    author.value=''
+    pages.value=''
+    read.value=''
+}
+
 function addBookToLibrary(book) {
-    myLibrary.push(book)
+    return myLibrary.push(book)
 }
 
 
