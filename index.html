@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div>
+            <button id="btn-new-book">Add Book</button>
+            <form id="form-new-book" style="display:none">
+                <label for="title">Title:  </label>
+                <input type="text" id="title" name="title"><br>
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author"><br>
+                <label for="pages">Pages:  </label>
+                <input type="number" id="pages" name="pages" min="1" max="10000"><br>
+                <div id='checkBox' margin="0px">
+                <p><label >Read: </label><input type='checkbox' id='read' name='read' value='yes'></p>
+                </div>
+                <button type="submit" form='form' value="Submit" id="new-book-submit">Add</button>
+            </form>
+        </div>
+        <div>
+            <button id="rm-book-btn">Remove Book</button>
+            <form id="form-rem-book" style="display:none">
+                <label for="rem-title">Index:  </label>
+                <input type="number" id="rm-index" name="rm-index" min="0" max="10000">
+                <button type="submit" form='form' value="Remove" id="rm-book-submit">Remove</button>
+            </form>
+        </div>
+    <div class="shelf" ></div>
+</body>
+<script src="java.js"></script>
+</html>

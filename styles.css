@@ -1,0 +1,23 @@
+* {
+    background-color: burlywood;
+}
+
+.header {
+    background-color: burlywood;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: top;
+    padding-right:0px;
+}
+
+#form-new-book,label,#read,p {
+    background-color: beige;
+}
+
+input {
+    background-color: lightgoldenrodyellow;
+}
+
+button {
+    background-color:goldenrod;
+}
