@@ -47,7 +47,7 @@ addNewBook.addEventListener('click',() => {
     author=document.getElementById("author");
     pages=document.getElementById("pages");
     read=document.getElementById("read");
-    let book=new makeBook(title.value,author.value,pages.value,read.value)
+    let book=new Book(title.value,author.value,pages.value,read.value)
     clearForm()
     let newRow=addBookToLibrary(book)-1
     document.getElementById("form-new-book").style.display="none";
@@ -58,15 +58,12 @@ function addLibraryDisplay(index) {
     let table=document.getElementById('main-table')
     row=table.insertRow()
     row.id="row"+index
-    newArry=Array.from(myLibrary[index])
     row.insertCell().textContent=index
     row.insertCell().textContent=myLibrary[index].title
     row.insertCell().textContent=myLibrary[index].author
     row.insertCell().textContent=myLibrary[index].pages
     row.insertCell().textContent=myLibrary[index].read
 }
-
-
 
 function clearForm() {
     title.value=''
@@ -79,12 +76,12 @@ function addBookToLibrary(book) {
     return myLibrary.push(book)
 }
 
-
-function makeBook(title,author,pages,read) {
-    return {title,
-    author,
-    pages,
-    read
+class Book {
+    constructor(title,author,pages,read) {
+        return {title,
+            author,
+            pages,
+            read
+            }
     }
 }
-
