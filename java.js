@@ -1,3 +1,5 @@
+
+
 let myLibrary=[]
 
 reqNewBook=document.getElementById('btn-new-book')
@@ -41,17 +43,8 @@ function removeLibraryDisplay(index) {
 }
 
 
-addNewBook=document.getElementById("new-book-submit");
-addNewBook.addEventListener('click',() => {
-    title=document.getElementById("title");
-    author=document.getElementById("author");
-    pages=document.getElementById("pages");
-    read=document.getElementById("read");
-    let book=new Book(title.value,author.value,pages.value,read.value)
-    clearForm()
-    let newRow=addBookToLibrary(book)-1
-    document.getElementById("form-new-book").style.display="none";
-    addLibraryDisplay(newRow)
+document.getElementById("new-book-submit").addEventListener('click',() => {
+    addBookEvent()
 })
 
 function addLibraryDisplay(index) {
@@ -69,19 +62,47 @@ function clearForm() {
     title.value=''
     author.value=''
     pages.value=''
-    read.value=''
+    read.checked=''
 }
 
 function addBookToLibrary(book) {
     return myLibrary.push(book)
 }
 
-class Book {
-    constructor(title,author,pages,read) {
-        return {title,
-            author,
-            pages,
-            read
-            }
-    }
+const bookFactory=(title,author,pages,read) => {
+    return {title,
+        author,
+        pages,
+        read
+        }
 }
+
+function getFormVal(errArry,id) {
+    let div=document.getElementById(id);
+    let divVal=div.value
+    if (divVal===""||divVal===null||divVal==='') {
+        errArry.push('Missing '+id)
+    }
+    return divVal
+}
+
+
+function addBookEvent() {
+    let errArry=[]
+    let titleVal=getFormVal(errArry,'title')
+    let authorVal=getFormVal(errArry,'author')
+    let pageVal=getFormVal(errArry,'pages');
+    read=document.getElementById("read");
+
+    if (errArry.length>0) {
+        alert(errArry);
+        return;
+    }
+    
+    let book=bookFactory(titleVal,authorVal,pageVal,read.checked)
+    clearForm()
+    let newRow=addBookToLibrary(book)-1
+    document.getElementById("form-new-book").style.display="none";
+    addLibraryDisplay(newRow)
+}
+
